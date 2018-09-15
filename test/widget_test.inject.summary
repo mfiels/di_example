@@ -1,0 +1,8 @@
+{
+  "asset": "asset:di_example/test/widget_test.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": []
+  }
+}

@@ -9,9 +9,19 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
+  inject:
+    path: inject.dart/package/inject
+
+  rxdart: ^0.18.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  inject_generator:
+    path: inject.dart/package/inject_generator
+
+  build_runner: ^0.8.3
 
 
 # For information on the generic Dart part of this file, see the

@@ -1,0 +1,156 @@
+{
+  "asset": "asset:di_example/lib/di.dart",
+  "summary": {
+    "injector": [
+      {
+        "name": "AppInjector",
+        "providers": [
+          {
+            "name": "blocs",
+            "kind": "method",
+            "injectedType": {
+              "lookupKey": {
+                "root": "dart:collection#UnmodifiableListView",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            "singleton": false,
+            "asynchronous": false,
+            "dependencies": []
+          }
+        ],
+        "modules": [
+          "asset:di_example/lib/di.dart#Module"
+        ]
+      }
+    ],
+    "module": [
+      {
+        "name": "Module",
+        "providers": [
+          {
+            "name": "httpClient",
+            "kind": "method",
+            "injectedType": {
+              "lookupKey": {
+                "root": "asset:http/lib/src/client.dart#Client",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            "singleton": true,
+            "asynchronous": false,
+            "dependencies": []
+          },
+          {
+            "name": "blocs",
+            "kind": "method",
+            "injectedType": {
+              "lookupKey": {
+                "root": "dart:collection#UnmodifiableListView",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            "singleton": true,
+            "asynchronous": false,
+            "dependencies": [
+              {
+                "lookupKey": {
+                  "root": "asset:di_example/lib/di.dart#AlbumBloc",
+                  "qualifier": null
+                },
+                "isProvider": false
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "injectable": [
+      {
+        "name": "AlbumBloc",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:di_example/lib/di.dart#AlbumBloc",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": true,
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "lookupKey": {
+                "root": "asset:di_example/lib/di.dart#ITunesAlbumService",
+                "qualifier": null
+              },
+              "isProvider": false
+            }
+          ]
+        }
+      },
+      {
+        "name": "ITunesAlbumService",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:di_example/lib/di.dart#ITunesAlbumService",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": true,
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "lookupKey": {
+                "root": "asset:http/lib/src/client.dart#Client",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:di_example/lib/di.dart#ITunesSearchService",
+                "qualifier": null
+              },
+              "isProvider": false
+            }
+          ]
+        }
+      },
+      {
+        "name": "ITunesSearchService",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:di_example/lib/di.dart#ITunesSearchService",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": true,
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "lookupKey": {
+                "root": "asset:http/lib/src/client.dart#Client",
+                "qualifier": null
+              },
+              "isProvider": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

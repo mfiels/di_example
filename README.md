@@ -1,8 +1,11 @@
 # di_example
 
-An example of inject.dart in Flutter.
+An example of using inject.dart in Flutter.
 
-## Getting Started
+This required some changes to inject.dart to get it to work with Flutter.
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+To run code generation and output the compiled injection code:
+
+```
+flutter packages pub run build_runner build
+```
