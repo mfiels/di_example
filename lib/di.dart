@@ -13,20 +13,31 @@ abstract class Bloc {}
 @provide
 @singleton
 class AlbumBloc implements Bloc {
+  static const _artists = [
+    'brand new',
+    'modest mouse',
+    'queens of the stone age',
+    'arctic monkeys',
+    'tame impala',
+    'taking back sunday',
+    'lcd soundsystem',
+  ];
+
   final ITunesAlbumService _service;
 
   final _albums = BehaviorSubject<List<Album>>();
-  final _search = StreamController<String>();
+  final _next = StreamController<void>();
+  var _index = 0;
 
   AlbumBloc(this._service) {
-    _search.stream.listen(_handleSearch);
+    _next.stream.listen(_handleNext);
   }
 
-  Future _handleSearch(String query) async =>
-      _albums.add(await _service.fetchAlbumNames(query));
+  Future _handleNext(_) async => _albums.add(
+      await _service.fetchAlbumNames(_artists[_index++ % _artists.length]));
 
   Stream<List<Album>> get albums => _albums.stream;
-  Sink<String> get search => _search.sink;
+  Sink<void> get next => _next.sink;
 }
 
 class Album {
@@ -111,7 +122,7 @@ class Module {
   @provide
   @singleton
   UnmodifiableListView<Bloc> blocs(AlbumBloc albumBloc) =>
-      UnmodifiableListView([albumBloc]);
+      UnmodifiableListView<Bloc>([albumBloc]);
 }
 
 @Injector(const [Module])

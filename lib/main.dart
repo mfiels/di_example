@@ -7,22 +7,7 @@ Future main() async {
   var injector = await AppInjector.create(Module());
   var blocs = injector.blocs();
   runApp(ServiceProvider(blocs: blocs, child: App()));
-  toggle(blocs.firstWhere((b) => b is AlbumBloc));
-}
-
-Future toggle(AlbumBloc bloc) async {
-  var index = 0;
-  return Future.doWhile(() async {
-    const artists = [
-      'brand new',
-      'modest mouse',
-      'queens of the stone age',
-      'arctic monkeys',
-    ];
-    bloc.search.add(artists[index++ % artists.length]);
-    await Future.delayed(Duration(seconds: 5));
-    return true;
-  });
+  (blocs.firstWhere((bloc) => bloc is AlbumBloc) as AlbumBloc).next.add(null);
 }
 
 class ServiceProvider extends InheritedWidget {
@@ -64,6 +49,12 @@ class HomePage extends StatelessWidget {
         title: Text('Albums'),
       ),
       body: Albums(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          ServiceProvider.blocOf<AlbumBloc>(context).next.add(null);
+        },
+        child: Icon(Icons.music_note),
+      ),
     );
   }
 }
@@ -103,7 +94,11 @@ class AlbumRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.network(album.url),
+        Image.network(
+          album.url,
+          width: 100.0,
+          height: 100.0,
+        ),
         Flexible(
           child: Padding(
             padding: EdgeInsets.all(8.0),
