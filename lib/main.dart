@@ -7,6 +7,8 @@ Future main() async {
   var injector = await AppInjector.create(Module());
   var blocs = injector.blocs();
   runApp(ServiceProvider(blocs: blocs, child: App()));
+
+  // Trigger the first fetch:
   (blocs.firstWhere((bloc) => bloc is AlbumBloc) as AlbumBloc).next.add(null);
 }
 
@@ -20,9 +22,12 @@ class ServiceProvider extends InheritedWidget {
         }),
         super(child: child);
 
-  static T blocOf<T>(BuildContext context) =>
+  static T blocOf<T extends Bloc>(BuildContext context) =>
       (context.inheritFromWidgetOfExactType(ServiceProvider) as ServiceProvider)
-          ._blocs[T] as T;
+          ._blocs[T];
+
+  @visibleForTesting
+  void addBlocForTest<T extends Bloc>(T bloc) => _blocs[T] = bloc;
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => false;
