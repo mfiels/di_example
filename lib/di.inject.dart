@@ -16,7 +16,7 @@ class AppInjector$Injector implements _i1.AppInjector {
 
   _i1.AlbumBloc _singletonAlbumBloc;
 
-  _i3.UnmodifiableListView<_i1.Bloc> _singletonUnmodifiableListView;
+  _i3.UnmodifiableListView _singletonUnmodifiableListView;
 
   static _i4.Future<_i1.AppInjector> create(_i1.Module module) async {
     final injector = new AppInjector$Injector._(module);
@@ -24,7 +24,7 @@ class AppInjector$Injector implements _i1.AppInjector {
     return injector;
   }
 
-  _i3.UnmodifiableListView<_i1.Bloc> _createUnmodifiableListView() =>
+  _i3.UnmodifiableListView _createUnmodifiableListView() =>
       _singletonUnmodifiableListView ??= _module.blocs(_createAlbumBloc());
   _i1.AlbumBloc _createAlbumBloc() =>
       _singletonAlbumBloc ??= new _i1.AlbumBloc(_createITunesAlbumService());
@@ -36,5 +36,5 @@ class AppInjector$Injector implements _i1.AppInjector {
       _singletonITunesSearchService ??=
           new _i1.ITunesSearchService(_createClient());
   @override
-  _i3.UnmodifiableListView<_i1.Bloc> blocs() => _createUnmodifiableListView();
+  _i3.UnmodifiableListView blocs() => _createUnmodifiableListView();
 }

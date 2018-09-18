@@ -121,7 +121,7 @@ class Module {
 
   @provide
   @singleton
-  UnmodifiableListView<Bloc> blocs(AlbumBloc albumBloc) =>
+  UnmodifiableListView blocs(AlbumBloc albumBloc) =>
       UnmodifiableListView<Bloc>([albumBloc]);
 }
 
@@ -130,5 +130,5 @@ abstract class AppInjector {
   static final create = generated.AppInjector$Injector.create;
 
   @provide
-  UnmodifiableListView<Bloc> blocs();
+  UnmodifiableListView blocs();
 }

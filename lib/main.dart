@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 Future main() async {
   var injector = await AppInjector.create(Module());
   var blocs = injector.blocs();
-  runApp(ServiceProvider(blocs: blocs, child: App()));
+  runApp(ServiceProvider(blocs: blocs.cast<Bloc>(), child: App()));
 
   // Trigger the first fetch:
   (blocs.firstWhere((bloc) => bloc is AlbumBloc) as AlbumBloc).next.add(null);
