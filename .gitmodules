@@ -1,3 +1,4 @@
 [submodule "inject.dart"]
 	path = inject.dart
 	url = https://github.com/mfiels/inject.dart
+  branch = attempting-fix
